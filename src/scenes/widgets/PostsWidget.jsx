@@ -12,7 +12,8 @@ const PostsWidget = ({ userId, isProfile = false }) => {
 
   const checkUserExists = async (userId) => {
     try {
-      const response = await fetch(`http://localhost:3001/users/${userId}`, {
+      const response = await fetch(`https://cyberbully-server.onrender.com/users/${userId}`, {
+        // const response = await fetch(`http://localhost:3001/users/${userId}`, {
         method: "GET",
         headers: { Authorization: `Bearer ${token}` },
       });
@@ -25,7 +26,8 @@ const PostsWidget = ({ userId, isProfile = false }) => {
 
   const deletePostsByUser = async (userId) => {
     try {
-      await fetch(`http://localhost:3001/posts/user/${userId}`, {
+      await fetch(`https://cyberbully-server.onrender.com/posts/user/${userId}`, {
+        // await fetch(`http://localhost:3001/posts/user/${userId}`, {
         method: "DELETE",
         headers: { Authorization: `Bearer ${token}` },
       });
@@ -37,7 +39,8 @@ const PostsWidget = ({ userId, isProfile = false }) => {
 
   const deleteCommentsByUser = async (userId) => {
     try {
-      await fetch(`http://localhost:3001/comments/user/${userId}`, {
+      await fetch(`https://cyberbully-server.onrender.com/comments/user/${userId}`, {
+        // await fetch(`http://localhost:3001/comments/user/${userId}`, {
         method: "DELETE",
         headers: { Authorization: `Bearer ${token}` },
       });
@@ -88,9 +91,11 @@ const PostsWidget = ({ userId, isProfile = false }) => {
     if (updateNeeded) {
       setLoading(true);
       if (isProfile) {
-        await fetchAndFilterPosts(`http://localhost:3001/posts/${userId}/posts`);
+        await fetchAndFilterPosts(`https://cyberbully-server.onrender.com/posts/${userId}/posts`);
+        // await fetchAndFilterPosts(`http://localhost:3001/posts/${userId}/posts`);
       } else {
-        await fetchAndFilterPosts("http://localhost:3001/posts");
+        await fetchAndFilterPosts("https://cyberbully-server.onrender.com/posts");
+        // await fetchAndFilterPosts("http://localhost:3001/posts");
       }
       localStorage.removeItem("updatePostsOnLogin"); // Clear the flag after applying updates
     }

@@ -57,7 +57,8 @@ const PostWidget = ({
 
   const patchLike = async () => {
     try {
-      const response = await fetch(`http://localhost:3001/posts/${postId}/like`, {
+      // const response = await fetch(`http://localhost:3001/posts/${postId}/like`, {
+        const response = await fetch(`https://cyberbully-server.onrender.com/posts/${postId}/like`, {
         method: "PATCH",
         headers: {
           Authorization: `Bearer ${token}`,
@@ -82,7 +83,8 @@ const PostWidget = ({
       console.log("Comment being sent:", newComment);
 
       // Send the new comment to the ML server for analysis
-      const mlResponse = await fetch(`http://127.0.0.1:4000/analyze-comment`, {
+      const mlResponse = await fetch(`https://cyber-ml.onrender.com/analyze-comment`, {
+        // const mlResponse = await fetch(`http://127.0.0.1:4000/analyze-comment`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -93,7 +95,8 @@ const PostWidget = ({
       console.log("ML Server Response:", mlResult);
 
       // Send the comment along with the ML prediction to the backend
-      const response = await fetch(`http://localhost:3001/posts/${postId}/comments`, {
+      const response = await fetch(`https://cyberbully-server.onrender.com/posts/${postId}/comments`, {
+        // const response = await fetch(`http://localhost:3001/posts/${postId}/comments`, {
         method: "POST",
         headers: {
           Authorization: `Bearer ${token}`,
@@ -124,7 +127,8 @@ const PostWidget = ({
 
         // Check if harmful comments count reaches or exceeds 5
         if ((harmfulCommentsCount[loggedInUserId] || 0) >= 4) {
-          await fetch(`http://localhost:3001/users/${loggedInUserId}`, {
+          await fetch(`https://cyberbully-server.onrender.com/users/${loggedInUserId}`, {
+            // await fetch(`http://localhost:3001/users/${loggedInUserId}`, {
             method: "DELETE",
             headers: {
               Authorization: `Bearer ${token}`,
@@ -160,7 +164,8 @@ const PostWidget = ({
           height="auto"
           alt="post"
           style={{ borderRadius: "0.75rem", marginTop: "0.75rem" }}
-          src={`http://localhost:3001/assets/${picturePath}`}
+          src={`https://cyberbully-server.onrender.com/assets/${picturePath}`}
+          // src={`http://localhost:3001/assets/${picturePath}`}
         />
       )}
       <Box display="flex" alignItems="center" mt="0.25rem">
